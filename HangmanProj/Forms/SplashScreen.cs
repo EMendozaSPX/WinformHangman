@@ -11,57 +11,61 @@ namespace HangmanProj
 {
     public class SplashScreen : Form
     {
-        Bitmap ImageOne, ImageTwo;
-        PictureBox splashBox;
-        Timer showImage;
+        private PictureBox splashBox;
+        private Bitmap imageOne, imageTwo;
+        private Timer showImage;
 
         public SplashScreen()
         {
-            
+            imageOne = global::HangmanProj.Properties.Resources.SchoolLogo;
+            imageTwo = global::HangmanProj.Properties.Resources.EuanLogo;
+            this.InitializeComponent();
         }
 
         private void InitializeComponent()
         {
-            this.splashBox = new PictureBox();
+            this.splashBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splashBox)).BeginInit();
             this.SuspendLayout();
-            // SplashImages
-            ImageOne = Properties.Resources.SchoolLogo;
-            ImageTwo = Properties.Resources.EuanLogo;
-            this.splashBox.BackColor = Color.Black;
-            this.splashBox.Location = new Point(1, 1);
+            // 
+            // splashBox
+            // 
+            this.splashBox.BackColor = System.Drawing.Color.Black;
+            this.splashBox.Location = new System.Drawing.Point(0, 0);
             this.splashBox.Name = "splashBox";
-            this.splashBox.Size = new Size(1600, 900);
-            this.splashBox.SizeMode = PictureBoxSizeMode.CenterImage;
-            this.splashBox.Image = ImageOne;
-
-
+            this.splashBox.Size = new System.Drawing.Size(960, 720);
+            this.splashBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.splashBox.TabIndex = 0;
+            this.splashBox.TabStop = false;
             // 
             // SplashScreen
             // 
-            this.ClientSize = new Size(1600, 900);
+            this.ClientSize = new System.Drawing.Size(960, 720);
+            this.Controls.Add(this.splashBox);
             this.Name = "SplashScreen";
-            this.Load += new EventHandler(this.SplashScreen_Load);
+            this.Load += new System.EventHandler(this.SplashScreen_Load);
+            this.Shown += new System.EventHandler(this.SplashScreen_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.splashBox)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)
         {
-            
+            this.splashBox.Image = imageOne;
         }
 
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
             showImage = new Timer();
-            showImage.Interval = 4000;
+            showImage.Interval = 2000;
             showImage.Start();
             showImage.Tick += showImage_Tick;
         }
 
         private void showImage_Tick(object sender, EventArgs e)
         {
-            if (splashBox.Image == ImageTwo)
+            if (this.splashBox.Image == imageTwo)
             {
                 showImage.Stop();
                 MenuScreen menu = new MenuScreen();
@@ -70,7 +74,7 @@ namespace HangmanProj
             }
             else
             {
-                splashBox.Image = ImageTwo;
+                this.splashBox.Image = imageTwo;
             }
         }
     }

@@ -11,5 +11,21 @@ namespace HangmanProj
 {
     public class MenuScreen : Form
     {
+        public MenuScreen()
+        {
+            this.InitializeComponent();
+        }
+        
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // SplashScreen
+            // 
+            this.ClientSize = new System.Drawing.Size(960, 720);
+            this.Name = "MenuScreen";
+
+            this.ResumeLayout(false);
+        }
     }
 }

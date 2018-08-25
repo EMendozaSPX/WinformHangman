@@ -15,7 +15,8 @@ namespace HangmanProj
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.Run(new SplashScreen());
+            //Application.Run(new SplashScreen());
+            Application.Run(new MenuScreen());
         }
     }
 }

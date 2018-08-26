@@ -14,8 +14,8 @@ namespace HangmanProj.View
 {
     public class EnterWordScreen : Form
     {
-        private TextBox enterTextBox;
-        private Button enterButton;
+        public TextBox enterTextBox;
+        public Button enterButton;
         private Label enterLabel;
         EnterWordControl controller;
 
@@ -53,8 +53,7 @@ namespace HangmanProj.View
             this.enterTextBox.PasswordChar = '*';
             this.enterTextBox.Size = new System.Drawing.Size(229, 26);
             this.enterTextBox.TabIndex = 1;
-            this.enterTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.enterTextBox_KeyDown);
-            this.enterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enterTextBox_KeyPress);
+            this.enterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.controller.enterTextBox_KeyPress);
             // 
             // enterButton
             // 
@@ -66,7 +65,7 @@ namespace HangmanProj.View
             this.enterButton.TabIndex = 2;
             this.enterButton.Text = "Enter";
             this.enterButton.UseVisualStyleBackColor = false;
-            this.enterButton.Click += new System.EventHandler(this.enterButton_Click);
+            this.enterButton.Click += new System.EventHandler(this.controller.enterButton_Click);
             // 
             // EnterWordScreen
             // 
@@ -91,32 +90,6 @@ namespace HangmanProj.View
         private void EnterWordScreen_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void enterButton_Click(object sender, EventArgs e)
-        {
-            if (this.enterTextBox != null)
-            {
-                this.controller.word = this.enterTextBox.ToString();
-            }          
-        }
-
-        private void enterTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Regex.IsMatch(e.KeyChar.ToString(), @"[^a-zA-Z\s]"))
-            {
-                e.Handled = true;
-            }
-
-            else if (e.KeyChar == (char)Keys.Enter && this.enterTextBox != null)
-            {
-                this.controller.word = this.enterTextBox.ToString();
-            }
-        }
-
-        private void enterTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            
         }
     }
 }

@@ -12,6 +12,8 @@ namespace HangmanProj
 {
     public class MenuScreen : Form
     {
+        private GameControl Game;
+
         private Button New;
         private Button Reuse;
         private Label Title;
@@ -19,6 +21,7 @@ namespace HangmanProj
         public MenuScreen()
         {
             this.InitializeComponent();
+            Game = new GameControl();
         }
         
         private void InitializeComponent()
@@ -86,8 +89,7 @@ namespace HangmanProj
 
         private void New_Click(object sender, EventArgs e)
         {
-            EnterWordControl enterWordController = new EnterWordControl();
-            enterWordController.displayView();
+            Game.NewWord();
             this.Hide();
         }
 

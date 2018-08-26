@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HangmanProj.Model;
+using HangmanProj.View;
 
 namespace HangmanProj.Controller
 {
@@ -18,10 +19,12 @@ namespace HangmanProj.Controller
         ScreenState state;
         EnterWordControl subControlNewWord;
         SetWordModel setWord;
+        GameScreen view;
 
         private List<char> word { get; set; }
         private List<char> dispList { get; set; }
         public string dispWord;
+        private string tempWord;
         
         public GameControl()
         {
@@ -38,15 +41,19 @@ namespace HangmanProj.Controller
 
         public void InitializeGame()
         {
+            
             switch (state)
             {
                 case 0:
-                    setWord = new SetWordModel(subControlNewWord.word);
+                    tempWord = subControlNewWord.word;
+                    setWord = new SetWordModel(tempWord);
                     word = setWord.SetWordList();
                     dispWord = setWord.SetDispWord();
                     subControlNewWord.view.Hide();
                     break;
             }
+            view = new GameScreen(dispWord);
+            view.Show();
         }
     }
 }

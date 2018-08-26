@@ -18,8 +18,7 @@ namespace HangmanProj.Controller
 
         public EnterWordControl()
         {
-            view = new EnterWordScreen();
-            view.SetControllerInstance(this);
+            view = new EnterWordScreen(this);
         }
 
         public void DisplayView()
@@ -36,7 +35,7 @@ namespace HangmanProj.Controller
         {
             if (view.enterTextBox != null)
             {
-                word = view.enterTextBox.ToString();
+                word = view.enterTextBox.Text.ToUpper();
                 parent.InitializeGame();
             }
         }
@@ -50,7 +49,7 @@ namespace HangmanProj.Controller
 
             else if (e.KeyChar == (char)Keys.Enter && view.enterTextBox != null)
             {
-                word = view.enterTextBox.ToString();
+                word = view.enterTextBox.Text.ToUpper();
                 parent.InitializeGame();
             }
         }

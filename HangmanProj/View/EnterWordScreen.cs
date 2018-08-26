@@ -19,8 +19,9 @@ namespace HangmanProj.View
         private Label enterLabel;
         EnterWordControl controller;
 
-        public EnterWordScreen()
+        public EnterWordScreen(EnterWordControl enterWord)
         {
+            controller = enterWord;
             this.InitializeComponent();
         }
 
@@ -80,11 +81,6 @@ namespace HangmanProj.View
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        public void SetControllerInstance(EnterWordControl enterWord)
-        {
-            controller = enterWord;
         }
 
         private void EnterWordScreen_Load(object sender, EventArgs e)

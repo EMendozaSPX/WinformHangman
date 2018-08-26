@@ -9,8 +9,7 @@ namespace HangmanProj.Model
     public class SetWordModel
     {
         string _word, dispWord;
-        List<char> wordList, wordDisp;
-
+        
         public SetWordModel(string word)
         {
             _word = word;
@@ -18,15 +17,28 @@ namespace HangmanProj.Model
 
         public string SetDispWord()
         {
+            var builder = new StringBuilder();
             foreach (char c in _word)
             {
-                dispWord += c + ' ';
+                switch (c)
+                {
+                    case ' ':
+                        builder.Append(' ');
+                        builder.Append(' ');
+                        break;
+                    default:
+                        builder.Append('_');
+                        builder.Append(' ');
+                        break;
+                }
             }
+            dispWord = builder.ToString();
             return dispWord;
         }
 
         public List<char> SetWordList()
         {
+            List<char> wordList = new List<char>();
             foreach (char c in _word)
             {
                 switch (c)

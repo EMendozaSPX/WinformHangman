@@ -85,7 +85,7 @@ namespace HangmanProj.View
 
         private void EnterWordScreen_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

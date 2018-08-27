@@ -20,16 +20,43 @@ namespace HangmanProj.Model
             var builder = new StringBuilder();
             foreach (char c in _word)
             {
-                switch (c)
+                if (c == ' ')
                 {
-                    case ' ':
-                        builder.Append(' ');
-                        builder.Append(' ');
-                        break;
-                    default:
-                        builder.Append('_');
-                        builder.Append(' ');
-                        break;
+                    builder.Append(' ');
+                    builder.Append(' ');
+                }
+
+                else
+                {
+                    builder.Append('_');
+                    builder.Append(' ');
+                }
+            }
+            dispWord = builder.ToString();
+            return dispWord;
+        }
+
+        public string SetDispWord(int index)
+        {
+            var builder = new StringBuilder();
+            char t = _word[index];
+            foreach (char c in _word)
+            {
+                if (c == ' ')
+                {
+                    builder.Append(' ');
+                    builder.Append(' ');
+                }
+
+                else if (c == t)
+                {
+                    builder.Append(c);
+                }
+
+                else
+                {
+                    builder.Append('_');
+                    builder.Append(' ');
                 }
             }
             dispWord = builder.ToString();

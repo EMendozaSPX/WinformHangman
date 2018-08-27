@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HangmanProj.Controller;
 
 namespace HangmanProj.Model
 {
@@ -10,13 +11,13 @@ namespace HangmanProj.Model
     {
         public string dispWord;
         private List<char> wordList, usedChar;
-        private int attempts;
+        private GameControl instance;
 
-        public GameModel(string _dispWord, List<char> _wordList)
+        public GameModel(GameControl _instance, string _dispWord, List<char> _wordList)
         {
+            instance = _instance;
             dispWord = _dispWord;
             wordList = _wordList;
-            attempts = 12;
         }
 
         public void MainLogic()
@@ -26,23 +27,29 @@ namespace HangmanProj.Model
 
         public void ProcessGuess(char guess)
         {
-            if (attempts != 0)
+            if (instance.ManState != HangState.Hanged)
             {
                 foreach (int x in wordList)
                 {
 
                     if (wordList[x] == guess)
                     {
-                        int i = (x * 2);
-                        dispWord[x] = guess;
+                        instance.dispWord = instance.setWord.SetDispWord(x);
+
                     }
                 }
+            }
+
+            else if (usedChar.Contains(guess))
+            {
+
             }
 
             else
             {
                 
             }
+            usedChar.Add(guess);
         }
     }
 }

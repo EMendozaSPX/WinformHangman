@@ -14,13 +14,32 @@ namespace HangmanProj.Controller
         OldWord
     }
 
+    public enum HangState
+    {
+        None,
+        Base,
+        CentreBeam,
+        RSupport,
+        LSupport,
+        TopBeam,
+        TopSupport,
+        Noose,
+        Head,
+        Body,
+        Arm,
+        RLeg,
+        Hanged
+    }
+
     public class GameControl
     {
+        public HangState ManState;
         ScreenState state;
         EnterWordControl subControlNewWord;
-        SetWordModel setWord;
+        GameModel model;
         GameScreen view;
-
+        public SetWordModel setWord;
+        public int remainingTurns;
         private List<char> word { get; set; }
         private List<char> dispList { get; set; }
         public string dispWord;
@@ -28,7 +47,7 @@ namespace HangmanProj.Controller
         
         public GameControl()
         {
-
+            ManState = HangState.None;
         }
 
         public void NewWord()
@@ -54,6 +73,7 @@ namespace HangmanProj.Controller
             }
             view = new GameScreen(dispWord);
             view.Show();
+            model = new GameModel(this, dispWord, word);
         }
     }
 }

@@ -9,47 +9,30 @@ namespace HangmanProj.Model
 {
     public class GameModel
     {
-        public string dispWord;
-        private List<char> wordList, usedChar;
-        private GameControl instance;
+        private int elapsedTurns;
+        private GameControl controller;
 
-        public GameModel(GameControl _instance, string _dispWord, List<char> _wordList)
+        public GameModel(GameControl instance)
         {
-            instance = _instance;
-            dispWord = _dispWord;
-            wordList = _wordList;
+            controller = instance;
         }
 
-        public void MainLogic()
+        public void Update(char guess)
         {
-
-        }
-
-        public void ProcessGuess(char guess)
-        {
-            if (instance.ManState != HangState.Hanged)
+            elapsedTurns = (int)controller.ManState;
+            if (elapsedTurns != 12)
             {
-                foreach (int x in wordList)
+                controller.RemainingTurns = 12 - elapsedTurns;
+                if (controller.word.Contains(guess))
                 {
-
-                    if (wordList[x] == guess)
-                    {
-                        instance.dispWord = instance.setWord.SetDispWord(x);
-
-                    }
+                    controller.SetWord.SetDispWord(controller.word.IndexOf(guess));
+                    controller.view.RedrawDisplayWord();
                 }
+                else
+                {
+                    controller.GuessedLetters.Add(guess);
+                } 
             }
-
-            else if (usedChar.Contains(guess))
-            {
-
-            }
-
-            else
-            {
-                
-            }
-            usedChar.Add(guess);
         }
     }
 }

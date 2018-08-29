@@ -33,18 +33,19 @@ namespace HangmanProj.Controller
 
     public class GameControl
     {
+        public string DispWord;
         public HangState ManState;
+        public SetWordModel SetWord;
+        public GameScreen view;
+        public int RemainingTurns;
+        public List<char> GuessedLetters;
+        public List<char> word;
+
         ScreenState state;
         EnterWordControl subControlNewWord;
         GameModel model;
-        GameScreen view;
-        public SetWordModel setWord;
-        public int remainingTurns;
-        private List<char> word { get; set; }
-        private List<char> dispList { get; set; }
-        public string dispWord;
-        private string tempWord;
         
+
         public GameControl()
         {
             ManState = HangState.None;
@@ -64,16 +65,28 @@ namespace HangmanProj.Controller
             switch (state)
             {
                 case 0:
-                    tempWord = subControlNewWord.word;
-                    setWord = new SetWordModel(tempWord);
-                    word = setWord.SetWordList();
-                    dispWord = setWord.SetDispWord();
+                    SetWord = new SetWordModel(subControlNewWord.word);
+                    word = SetWord.SetWordList();
+                    RemainingTurns = 12;
+                    DispWord = SetWord.SetDispWord();
                     subControlNewWord.view.Hide();
                     break;
             }
-            view = new GameScreen(dispWord);
+            view = new GameScreen(this);
             view.Show();
-            model = new GameModel(this, dispWord, word);
+            model = new GameModel(this);
+        }
+
+        private void setHangImage()
+        {
+            switch (ManState)
+            {
+                case (HangState) 1:
+
+                    break;
+                case (HangState)2:
+                    break;
+            }
         }
     }
 }

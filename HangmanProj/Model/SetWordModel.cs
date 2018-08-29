@@ -51,6 +51,7 @@ namespace HangmanProj.Model
                 else if (c == t)
                 {
                     builder.Append(c);
+                    builder.Append(' ');
                 }
 
                 else

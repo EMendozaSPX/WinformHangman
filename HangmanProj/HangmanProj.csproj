@@ -108,6 +108,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Content\EuanLogo.png" />
+    <Content Include="Content\Hangman12.png" />
     <Content Include="Content\SchoolLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
